@@ -47,9 +47,6 @@
     <ClCompile Include="MapNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\beem1\Downloads\map1.raw" />
