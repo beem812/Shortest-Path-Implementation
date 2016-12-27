@@ -1,40 +1,9 @@
-========================================================================
-    CONSOLE APPLICATION : ShortestPath Project Overview
-========================================================================
+This is my attempt at implementing Djikstra's shortest path algorithm using a 50k pixel grey scale image as my graph, with the greyscale value of each pixel representing an elevation and the difference in elevation between each pixel representing the cost of movement between those pixels along with a value of 1 for the base movement between pixels regardless of elevation difference.
 
-AppWizard has created this ShortestPath application for you.
+map1.raw is the original image that is read in as 1 byte integer values.
 
-This file contains a summary of what you will find in each of the files that
-make up your ShortestPath application.
+map2.raw is a greyscale image where the value at each pixel is the weighted distance from the top left pixel (0,0) to every other pixel.
 
 
-ShortestPath.vcxproj
-    This is the main project file for VC++ projects generated using an Application Wizard.
-    It contains information about the version of Visual C++ that generated the file, and
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
+I used a Min heap to store the frontier nodes that still need to be processed. In this implementation each pass results in a rebuilding of the heap due to the order of the heap changing outside of the normal heap calls which would result in an error without the rebuild. Not sure how to avoid that just yet.
 
-ShortestPath.vcxproj.filters
-    This is the filters file for VC++ projects generated using an Application Wizard. 
-    It contains information about the association between the files in your project 
-    and the filters. This association is used in the IDE to show grouping of files with
-    similar extensions under a specific node (for e.g. ".cpp" files are associated with the
-    "Source Files" filter).
-
-ShortestPath.cpp
-    This is the main application source file.
-
-/////////////////////////////////////////////////////////////////////////////
-Other standard files:
-
-StdAfx.h, StdAfx.cpp
-    These files are used to build a precompiled header (PCH) file
-    named ShortestPath.pch and a precompiled types file named StdAfx.obj.
-
-/////////////////////////////////////////////////////////////////////////////
-Other notes:
-
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
-
-/////////////////////////////////////////////////////////////////////////////
