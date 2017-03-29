@@ -3,9 +3,15 @@
 #include <math.h>
 #include <iostream>
 using namespace std;
+/*
+MapNode is the object type that will be used to represent each pixel in the image and hold the relevant info
+*/
+
 
 MapNode::MapNode()
 {
+	//indicates the node that arrives at this one on the shortest path, eg: if approaching this node form the north is the
+	//shortest way to get to this node then shortestAdjacent will indicate north.
 	shortestAdjacent = 0;
 	height = 0;
 	distanceFromStart = INT_MAX;
@@ -47,17 +53,22 @@ int MapNode::getJ() {//column index of THIS node
 	return jIndex;
 }
 
-bool MapNode::setDistance(MapNode * comparator) {
+bool MapNode::setDistance(MapNode * comparator) {//seeks to update the distanceFromStart value of THIS node
+	
+	//exit this method if the node seeking to come to this node is already on a less optimal path than this one.
 	if (comparator->distanceFromStart > distanceFromStart) {
 		return false;
 	}
-
-	float calculatedCost = sqrt(1 + (height - comparator->getHeight())*(height - comparator->getHeight())); //generating cost of movement to THIS node
 	
-	float calculatedDistance = calculatedCost + comparator->distanceFromStart; //generating distance from origin through comparator node to THIS node
+	//generating cost of movement to THIS node
+	float calculatedCost = sqrt(1 + (height - comparator->getHeight())*(height - comparator->getHeight())); 
+	
+	//generating distance from origin through comparator node to THIS node
+	float calculatedDistance = calculatedCost + comparator->distanceFromStart; 
 	
 	if (calculatedDistance < distanceFromStart) {
 		distanceFromStart = calculatedDistance;
+		
 		/*Shortest Adjacent:
 		North: 50,
 		East: 100,
